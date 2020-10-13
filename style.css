@@ -1,0 +1,43 @@
+#headerimage{
+    width: 50px;
+    height: 50px;
+    float: left;
+}
+h1{
+    font-size: 20px;
+    position: relative;
+    float: left;   
+    margin-top: 10px;
+}
+
+#headertabs{
+    float: right;
+    
+}
+
+#resultsSection{
+    width: 300px;
+    position: relative;
+    margin-top: 75px;
+    margin-left: 20px;
+}
+
+#imageOne, #imageTwo, #imageThree{
+    width: 30%;
+    padding: auto;
+}
+
+#productOptions{
+    width: 75%;
+    float: right;
+}
+button{
+    width: 200px;
+    position: relative;
+    margin-left: 25%;
+}
+#contact{
+    float: right;
+    position: relative;
+    margin-right: 5px;
+}
