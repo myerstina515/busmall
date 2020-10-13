@@ -128,7 +128,7 @@ var resultsList = document.getElementById('resultsSection');
 function finalTally(){
   for (var i = 0; i < allProducts.length - 1; i++){
     var imageOne = document.createElement('li');
-    imageOne.textContent = allProducts[i].name, allProducts[i].votes;
+    imageOne.textContent = `${allProducts[i].name} received ${allProducts[i].votes} votes over 25 rounds of voting`;
     resultsList.appendChild(imageOne);
   }
 }
