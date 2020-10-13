@@ -1,43 +1,82 @@
+html{
+    width: 1000px;
+}
+
 #headerimage{
     width: 50px;
     height: 50px;
     float: left;
 }
+header{
+    height: 50px;
+    /* border: 1px black solid; */
+    width: 100%;
+}
 h1{
-    font-size: 20px;
+    font-size: 30px;
     position: relative;
     float: left;   
-    margin-top: 10px;
+    margin-top: 13px;
+    padding-left: 10px;
 }
 
-#headertabs{
+/* #headertabs{
     float: right;
     
-}
+} */
 
 #resultsSection{
-    width: 300px;
-    position: relative;
-    margin-top: 75px;
+    width: 290px;
+    position: absolute;
+    margin-top: 50px;
     margin-left: 20px;
+    border: 2px solid black;
+    padding: 15px;
+    padding-bottom: 20px;
 }
 
 #imageOne, #imageTwo, #imageThree{
     width: 30%;
-    padding: auto;
 }
 
 #productOptions{
-    width: 75%;
+    width: 62%;
+    height: 25%;
     float: right;
+    margin-top: 50px;
+    padding: 18px;
+    border: 1px black solid;
 }
 button{
     width: 200px;
     position: relative;
-    margin-left: 25%;
+    margin-left: 30%;
+}
+#home{
+    position: absolute;
+    top: 30px;
+    left: 690px;
+
+}
+#products{
+    position: absolute;
+    top: 30px;
+    left: 770px;
+}
+#about{
+    position: absolute;
+    top: 30px;
+    left: 850px;
 }
 #contact{
-    float: right;
-    position: relative;
-    margin-right: 5px;
+    position: absolute;
+    top: 30px;
+    left: 930px;
+}
+
+.tabs{
+    border: 1px black solid;
+    width: 60px;
+    padding: 5px;
+    border-radius: 5px 5px 0 0;
 }
