@@ -7,58 +7,66 @@ var imageTwoElement = document.getElementById('imageTwo');
 var imageThreeElement = document.getElementById('imageThree');
 var recentRandomNumbers = [];
 var votingRoundTracker = 0;
-var votingRound = 25;
+var votingRound = 10;
 
 // math.random to return a random number between 0 and the length of the array.
 // Use that nubmer to be the index position of our allProducts array. So that when we do imageOneElement.src = allProducts[randomNumber]
 
 
 
+function checkLocalStorage(){
+  // console.log(allProducts);
+  var productsFromLocalStorage = localStorage.getItem('products');
+  // console.log('products from local storage: ', productsFromLocalStorage);
+  var parsedProducts = JSON.parse(productsFromLocalStorage);
+  // console.log('parsed products from local storage: ', parsedProducts);
 
-// Goals: render 3 photos to the DOM
-// allow users to vote on which photo they like
-// keep track of votes
-// keep track of views
+  if (productsFromLocalStorage) {
+    for(var i = 0; i < parsedProducts.length; i++){
+      new Products(parsedProducts[i].filepath, parsedProducts[i].name, parsedProducts[i].votes, parsedProducts[i].views);
 
+      // console.log(productsFromLocalStorage[i].filepath);
+    }
+  } else{
+    generateNewInstances();
+  }
+}
 
-// do this three times:
-// go to my index and select an image tag
-// fill that image tag with content
-// append it to the DOM
+checkLocalStorage();
 
-
-function Products(filepath, name){
+function Products(filepath, name, votes = 0, views = 0){
   this.filepath = filepath;
   this.name = name;
-  this.votes = 0;
-  this.views = 0;
+  this.votes = votes;
+  this.views = views;
 
   allProducts.push(this);
 }
 
-new Products('img/boots.jpg', 'boots');
-new Products('img/bag.jpg', 'bag');
-new Products('img/banana.jpg', 'banana');
-new Products('img/bathroom.jpg', 'bathroom');
-new Products('img/breakfast.jpg', 'breakfast');
-new Products('img/bubblegum.jpg', 'bubblegum');
-new Products('img/chair.jpg', 'chair');
-new Products('img/cthulhu.jpg', 'cthulhu');
-new Products('img/dog-duck.jpg', 'dog-duck');
-new Products('img/dragon.jpg', 'dragon');
-new Products('img/pen.jpg', 'pen');
-new Products('img/pet-sweep.jpg', 'pet-sweep');
-new Products('img/scissors.jpg', 'scissors');
-new Products('img/shark.jpg', 'shark');
-new Products('img/sweep.png', 'sweep');
-new Products('img/tauntaun.jpg', 'tauntaun');
-new Products('img/unicorn.jpg', 'unicorn');
-new Products('img/usb.gif', 'usb');
-new Products('img/water-can.jpg', 'water-can');
-new Products('img/wine-glass.jpg', 'wine-glass');
+function generateNewInstances(){
+  new Products('img/boots.jpg', 'boots');
+  new Products('img/bag.jpg', 'bag');
+  new Products('img/banana.jpg', 'banana');
+  new Products('img/bathroom.jpg', 'bathroom');
+  new Products('img/breakfast.jpg', 'breakfast');
+  new Products('img/bubblegum.jpg', 'bubblegum');
+  new Products('img/chair.jpg', 'chair');
+  new Products('img/cthulhu.jpg', 'cthulhu');
+  new Products('img/dog-duck.jpg', 'dog-duck');
+  new Products('img/dragon.jpg', 'dragon');
+  new Products('img/pen.jpg', 'pen');
+  new Products('img/pet-sweep.jpg', 'pet-sweep');
+  new Products('img/scissors.jpg', 'scissors');
+  new Products('img/shark.jpg', 'shark');
+  new Products('img/sweep.png', 'sweep');
+  new Products('img/tauntaun.jpg', 'tauntaun');
+  new Products('img/unicorn.jpg', 'unicorn');
+  new Products('img/usb.gif', 'usb');
+  new Products('img/water-can.jpg', 'water-can');
+  new Products('img/wine-glass.jpg', 'wine-glass');
+}
 
-
-console.log(allProducts);
+// console.log(allProducts);
 
 // render function
 
@@ -73,11 +81,11 @@ function render(imageElement){
 
   imageElement.src = allProducts[randomIndex].filepath;
   imageElement.alt = allProducts[randomIndex].name;
-
+  // console.log(allProducts);
   allProducts[randomIndex].views++;
-
+  // console.log(allProducts);
   recentRandomNumbers.push(randomIndex);
-  console.log(recentRandomNumbers);
+  // console.log(recentRandomNumbers);
   if (recentRandomNumbers.length > 5){
     recentRandomNumbers.shift();
     recentRandomNumbers.shift();
@@ -105,20 +113,26 @@ productOptionsElement.addEventListener('click', function(event){
     //   console.log(event.target.title);
 
     var chosenProduct = event.target.alt;
-    console.log(chosenProduct);
+    // console.log(chosenProduct);
     for (var i = 0; i < allProducts.length - 1; i++){
       if (chosenProduct === allProducts[i].name){
         allProducts[i].votes++;
       }
     }
-    render(imageOneElement);
-    render(imageTwoElement);
-    render(imageThreeElement);
     votingRoundTracker++;
-  } else {
-    finalTally();
+    if (votingRoundTracker === votingRound){
+      finalTally();
+
+    } else {
+      render(imageOneElement);
+      render(imageTwoElement);
+      render(imageThreeElement);
+    }
+
   }
+
 });
+
 
 render(imageOneElement);
 render(imageTwoElement);
@@ -143,12 +157,17 @@ function finalTally(){
 
   for (var k = 0; k < allProducts.length; k++){
     myChart.data.labels.push(allProducts[k].name);
-    console.log(myChart.data.labels[k] + 'is speaking');
+    // console.log(myChart.data.labels[k] + 'is speaking');
   }
 
   for (var x = 0; x < allProducts.length; x++){
     myChart.data.datasets[1].data.push(allProducts[x].views);
   }
+  // console.log(allProducts, 'this is before it goes into storage');
+  var stringifyProducts = JSON.stringify(allProducts);
+  // console.log('My all Products array as JSON: ', stringifyProducts);
+  localStorage.setItem('products', stringifyProducts);
+
   myChart.update();
 }
 
