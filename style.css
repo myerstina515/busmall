@@ -1,5 +1,6 @@
 html{
     width: 1000px;
+    background-color: rgb(235, 231, 231);
 }
 
 #headerimage{
@@ -11,6 +12,7 @@ header{
     height: 50px;
     /* border: 1px black solid; */
     width: 100%;
+    /* background-color: rgb(252, 252, 208); */
 }
 h1{
     font-size: 30px;
@@ -33,10 +35,11 @@ h1{
     border: 2px solid black;
     padding: 15px;
     padding-bottom: 20px;
+    background-color: rgb(247, 210, 210);
 }
-
 #imageOne, #imageTwo, #imageThree{
     width: 30%;
+    padding-left: 15px;
     height: 217px;
 }
 
@@ -47,6 +50,7 @@ h1{
     margin-top: 50px;
     padding: 18px;
     border: 1px black solid;
+    background-color: rgb(170, 229, 248);
 }
 button{
     width: 200px;

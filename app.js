@@ -7,7 +7,7 @@ var imageTwoElement = document.getElementById('imageTwo');
 var imageThreeElement = document.getElementById('imageThree');
 var recentRandomNumbers = [];
 var votingRoundTracker = 0;
-var votingRound = 10;
+var votingRound = 25;
 
 // math.random to return a random number between 0 and the length of the array.
 // Use that nubmer to be the index position of our allProducts array. So that when we do imageOneElement.src = allProducts[randomNumber]
